@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia do Seu Chico - Agendamento Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Seu Chico Barbearia" class="logo">
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Início</a>
+                <a href="#servicos" class="nav-link">Serviços</a>
+                <a href="#agendamento" class="nav-link">Agendar</a>
+                <a href="#contato" class="nav-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Barbearia do Seu Chico</h1>
+                <p class="hero-subtitle">Atendimento personalizado com produtos de alta qualidade desde 2022</p>
+                <button class="cta-button" onclick="scrollToSection('agendamento')">
+                    <i class="fas fa-calendar-alt"></i>
+                    Agendar Horário
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="services-grid" id="servicos-grid">
+                <!-- Serviços serão carregados dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento Section -->
+    <section id="agendamento" class="booking">
+        <div class="container">
+            <h2 class="section-title">Agende seu Horário</h2>
+            <div class="booking-form-container">
+                <form id="agendamento-form" class="booking-form">
+                    <div class="form-group">
+                        <label for="cliente-nome">Nome Completo</label>
+                        <input type="text" id="cliente-nome" name="cliente_nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cliente-contato">WhatsApp</label>
+                        <input type="tel" id="cliente-contato" name="cliente_contato" placeholder="(11) 99999-9999" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cliente-email">E-mail (opcional)</label>
+                        <input type="email" id="cliente-email" name="cliente_email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servico">Serviço</label>
+                        <select id="servico" name="servico_id" required>
+                            <option value="">Selecione um serviço</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" name="data_agendamento" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horario">Horário</label>
+                        <select id="horario" name="hora_agendamento" required disabled>
+                            <option value="">Selecione primeiro a data</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observacoes">Observações (opcional)</label>
+                        <textarea id="observacoes" name="observacoes" rows="3" placeholder="Alguma observação especial?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-check"></i>
+                        Confirmar Agendamento
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contato</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <p>(11) 99965-6990</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <div>
+                        <h3>Instagram</h3>
+                        <p>@seuchicobarbearia4</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Horário de Funcionamento</h3>
+                        <p>Segunda a Sábado: 8h às 18h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Sucesso -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <h3>Agendamento Concluído!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Seu agendamento foi realizado com sucesso!</p>
+                <p>Em breve você receberá uma confirmação no WhatsApp.</p>
+            </div>
+            <button class="modal-button" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Erro -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content error">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Erro no Agendamento</h3>
+            </div>
+            <div class="modal-body">
+                <p id="error-message">Ocorreu um erro. Tente novamente.</p>
+            </div>
+            <button class="modal-button" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Processando agendamento...</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Barbearia do Seu Chico. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
